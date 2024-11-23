@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start Session</title>
+    <!-- Bulma CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fbc2eb);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .container {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .box {
+            max-width: 600px;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .button {
+            font-size: 1.2rem;
+            border-radius: 50px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .button:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+        }
+        .field {
+            margin-bottom: 1rem;
+        }
+    </style>
+    <script>
+        function addField() {
+            const container = document.getElementById('fields-container');
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.name = 'field_names[]';
+            input.placeholder = 'Enter Field Name';
+            input.classList.add('input');
+            input.required = true;
+            container.appendChild(input);
+            container.appendChild(document.createElement('br'));
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="box has-background-light">
+            <h1 class="title has-text-centered has-text-primary">Start a Session</h1>
+            <form method="POST">
+                {% csrf_token %}
+                <div id="fields-container">
+                    <div class="field">
+                        <input type="text" name="field_names[]" placeholder="Enter Field Name" class="input" required>
+                    </div>
+                </div><br><br>
+                <div class="buttons is-centered">
+                    <button type="button" onclick="addField()" class="button is-primary is-light">
+                        Add Field
+                    </button>
+                    <button type="submit" class="button is-primary">
+                        Start Session
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Values</title>
+    <!-- Include Bulma CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" rel="stylesheet">
+    <!-- Include Animate.css for animations -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .box {
+            width: 100%;
+            max-width: 600px;
+            padding: 2rem;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .button {
+            width: 200px;
+            margin-top: 20px;
+        }
+        .input, .textarea {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box has-background-light animate__animated animate__fadeIn">
+    <h1 class="title has-text-centered has-text-primary">Add New Values</h1>
+    <p class="subtitle has-text-centered has-text-grey-dark">
+        Fill in the form below to add new values.
+    </p>
+
+    <form method="POST" class="animate__animated animate__fadeInUp">
+        <!-- CSRF Token for security (make sure to include this in Django forms) -->
+        {% csrf_token %}
+        
+        <div class="field">
+            <label class="label">Value Name</label>
+            <div class="control">
+                <input class="input" type="text" name="value_name" required placeholder="Enter value name">
+            </div>
+        </div>
+
+        <div class="field">
+            <label class="label">Value Description</label>
+            <div class="control">
+                <textarea class="textarea" name="value_description" placeholder="Enter value description" required></textarea>
+            </div>
+        </div>
+
+        <div class="has-text-centered">
+            <button type="submit" class="button is-primary is-medium">
+                Add Value
+            </button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

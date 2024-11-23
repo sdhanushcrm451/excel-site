@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Values</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fbc2eb);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .container {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .box {
+            max-width: 500px;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+        }
+        .button {
+            font-size: 1.2rem;
+            border-radius: 50px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .button:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box has-background-light">
+            <h1 class="title has-text-centered has-text-primary">Enter Values</h1>
+
+            <!-- Form for adding values -->
+            <form method="POST">
+                {% csrf_token %}
+                {% for field in field_names %}
+                    <label class="label">{{ field }}</label>
+                    <div class="control">
+                        <input type="text" class="input" name="{{ field }}" required><br>
+                    </div>
+                {% endfor %}
+                <br><br>
+                <button type="submit" class="button is-primary is-medium is-fullwidth">
+                    Submit
+                </button><br>
+            </form>
+
+            <p class="has-text-centered">
+                <a href="/end-session/" class="button is-danger">End Session</a>
+            </p>
+        </div>
+    </div>
+</body>
+</html>
